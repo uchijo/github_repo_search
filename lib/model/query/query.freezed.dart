@@ -94,7 +94,7 @@ class __$$QueryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QueryImpl implements _Query {
-  _$QueryImpl({this.keyword = ''});
+  const _$QueryImpl({this.keyword = ''});
 
   factory _$QueryImpl.fromJson(Map<String, dynamic> json) =>
       _$$QueryImplFromJson(json);
@@ -135,7 +135,7 @@ class _$QueryImpl implements _Query {
 }
 
 abstract class _Query implements Query {
-  factory _Query({final String keyword}) = _$QueryImpl;
+  const factory _Query({final String keyword}) = _$QueryImpl;
 
   factory _Query.fromJson(Map<String, dynamic> json) = _$QueryImpl.fromJson;
 

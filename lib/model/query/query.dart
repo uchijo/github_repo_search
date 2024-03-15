@@ -8,7 +8,7 @@ part 'query.g.dart';
 
 @freezed
 class Query with _$Query {
-  factory Query({
+  const factory Query({
     @Default('') String keyword,
   }) = _Query;
 
