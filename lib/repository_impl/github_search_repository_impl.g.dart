@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_result_notifier.dart';
+part of 'github_search_repository_impl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchResultNotifierHash() =>
-    r'f683911940334bdf9896aa411ffdb0946b63e277';
+String _$githubSearchRepositoryHash() =>
+    r'eda4a288999e684394abf1d41e97318ff3eb6ce5';
 
-/// See also [SearchResultNotifier].
-@ProviderFor(SearchResultNotifier)
-final searchResultNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    SearchResultNotifier, SearchResult>.internal(
-  SearchResultNotifier.new,
-  name: r'searchResultNotifierProvider',
+/// See also [githubSearchRepository].
+@ProviderFor(githubSearchRepository)
+final githubSearchRepositoryProvider =
+    AutoDisposeProvider<GithubSearchRepository>.internal(
+  githubSearchRepository,
+  name: r'githubSearchRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$searchResultNotifierHash,
+      : _$githubSearchRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SearchResultNotifier = AutoDisposeAsyncNotifier<SearchResult>;
+typedef GithubSearchRepositoryRef
+    = AutoDisposeProviderRef<GithubSearchRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

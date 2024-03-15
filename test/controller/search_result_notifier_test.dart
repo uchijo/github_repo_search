@@ -19,7 +19,7 @@ void main() {
 
     // 初期状態では検索結果が空
     expect(
-      await container.read(searchResultNotifierProvider.future),
+      (await container.read(searchResultNotifierProvider.future)).items,
       <RepositoryInfo>[],
     );
 
@@ -27,12 +27,12 @@ void main() {
     container.read(queryNotifierProvider.notifier).setSearchWord('flutter');
     var searchResult =
         await container.read(searchResultNotifierProvider.future);
-    expect(searchResult, <RepositoryInfo>[]);
+    expect(searchResult.items, <RepositoryInfo>[]);
 
     // invalidateして初めて検索結果が更新される
     container.invalidate(searchResultNotifierProvider);
     searchResult = await container.read(searchResultNotifierProvider.future);
-    expect(searchResult.length, mockResult1.length);
-    expect(searchResult[0], mockResult1[0]);
+    expect(searchResult.items.length, mockResult1.length);
+    expect(searchResult.items[0], mockResult1[0]);
   });
 }

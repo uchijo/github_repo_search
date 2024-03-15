@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repo_search/util/get_gh_token.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -49,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(getGHToken()),
             const Text(
               'You have pushed the button this many times:',
             ),
