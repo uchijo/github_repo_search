@@ -8,13 +8,13 @@ import 'package:github_repo_search/util/get_gh_token.dart';
 import 'package:http/http.dart' as http;
 
 final githubSearchRepositoryProvider = Provider<GithubSearchRepository>(
-  (ref) => GithubSearchRepositoryImpl(),
+  (ref) => GithubSearchRepositoryImpl(token: getGHToken()),
 );
 
 class GithubSearchRepositoryImpl implements GithubSearchRepository {
-  GithubSearchRepositoryImpl({http.Client? client})
+  GithubSearchRepositoryImpl({http.Client? client, required String token})
       : _client = client ?? http.Client() {
-    _token = getGHToken();
+    _token = token;
   }
 
   final http.Client _client;

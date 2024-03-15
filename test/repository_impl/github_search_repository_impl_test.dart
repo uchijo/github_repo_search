@@ -279,7 +279,10 @@ void main() {
         (realInvocation) async => http.Response(result, 200),
       );
 
-      final repo = GithubSearchRepositoryImpl(client: mockClient);
+      final repo = GithubSearchRepositoryImpl(
+        client: mockClient,
+        token: 'dummy',
+      );
       const query = Query(keyword: 'flutter');
 
       final fetchResult = await repo.search(query);
@@ -294,7 +297,7 @@ void main() {
       (realInvocation) async => http.Response('error', 400),
     );
 
-    final repo = GithubSearchRepositoryImpl(client: mockClient);
+    final repo = GithubSearchRepositoryImpl(client: mockClient, token: 'dummy');
     const query = Query(keyword: 'flutter');
 
     expect(() => repo.search(query), throwsA(const TypeMatcher<Exception>()));
@@ -305,7 +308,7 @@ void main() {
     when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
       (realInvocation) async => http.Response(result, 200),
     );
-    final repo = GithubSearchRepositoryImpl(client: mockClient);
+    final repo = GithubSearchRepositoryImpl(client: mockClient, token: 'dummy');
     const query = Query();
 
     expect(() => repo.search(query), throwsA(const TypeMatcher<Exception>()));
