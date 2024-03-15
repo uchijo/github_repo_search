@@ -31,3 +31,9 @@ jobs:
 
       - name: Build for Android
         run: flutter build apk
+
+      - name: upload
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: android
+          path: build/app/outputs/flutter-apk/app-release.apk
