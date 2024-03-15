@@ -2,6 +2,7 @@ import 'package:github_repo_search/controller/repository/github_search_repositor
 import 'package:github_repo_search/model/owner/owner.dart';
 import 'package:github_repo_search/model/query/query.dart';
 import 'package:github_repo_search/model/repository_info/repository_info.dart';
+import 'package:github_repo_search/model/search_result/search_result.dart';
 
 final mockResult1 = [
   RepositoryInfo(
@@ -24,7 +25,7 @@ final mockResult1 = [
 
 class GithubSearchRepositoryMock implements GithubSearchRepository {
   @override
-  Future<List<RepositoryInfo>> search(Query query) async {
-    return mockResult1;
+  Future<SearchResult> search(Query query, {int page = 1}) async {
+    return SearchResult(items: mockResult1, totalCount: 1);
   }
 }

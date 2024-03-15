@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_repo_search/controller/repository/github_search_repository.dart';
 import 'package:github_repo_search/model/query/query.dart';
-import 'package:github_repo_search/model/repository_info/repository_info.dart';
+import 'package:github_repo_search/model/search_result/search_result.dart';
 import 'package:github_repo_search/util/get_gh_token.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +21,7 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
   late final String _token;
 
   @override
-  Future<List<RepositoryInfo>> search(Query query) async {
+  Future<SearchResult> search(Query query, {int page = 1}) async {
     if (query.keyword.isEmpty) {
       throw Exception('keyword is empty');
     }
@@ -33,6 +33,7 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
         path: '/search/repositories',
         queryParameters: {
           'q': query.keyword,
+          'page': page.toString(),
         },
       ),
       headers: {
@@ -45,11 +46,8 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
     }
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
-    final result = json['items'] as List;
-    final hoge = result
-        .map((e) => RepositoryInfo.fromJson(e as Map<String, dynamic>))
-        .toList();
+    final result = SearchResult.fromJson(json);
 
-    return hoge;
+    return result;
   }
 }

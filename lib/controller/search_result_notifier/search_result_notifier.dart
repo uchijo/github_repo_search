@@ -25,6 +25,6 @@ class SearchResultNotifier extends _$SearchResultNotifier {
 
     final searchResult = await repo.search(query);
 
-    return searchResult;
+    return searchResult.items;
   }
 }

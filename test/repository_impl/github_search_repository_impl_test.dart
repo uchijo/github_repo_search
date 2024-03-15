@@ -272,7 +272,7 @@ void main() {
 }''';
 
   test(
-    'sample test for manual test',
+    'succeeds when response status is 200 and keyword is not empty',
     () async {
       final mockClient = mock.MockClient();
       when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
@@ -287,7 +287,8 @@ void main() {
 
       final fetchResult = await repo.search(query);
 
-      expect(fetchResult.isNotEmpty, true);
+      expect(fetchResult.items.isNotEmpty, true);
+      expect(fetchResult.totalCount, 662338);
     },
   );
 
@@ -312,5 +313,31 @@ void main() {
     const query = Query();
 
     expect(() => repo.search(query), throwsA(const TypeMatcher<Exception>()));
+  });
+
+  test('pagenation', () async {
+    final mockClient = mock.MockClient();
+    when(mockClient.get(captureAny, headers: anyNamed('headers'))).thenAnswer(
+      (realInvocation) async => http.Response(result, 200),
+    );
+    final repo = GithubSearchRepositoryImpl(client: mockClient, token: 'dummy');
+    const query = Query(keyword: 'flutter');
+
+    await repo.search(query, page: 2);
+
+    verify(
+      mockClient.get(
+        Uri(
+          scheme: 'https',
+          host: 'api.github.com',
+          path: '/search/repositories',
+          queryParameters: {
+            'q': 'flutter',
+            'page': '2',
+          },
+        ),
+        headers: anyNamed('headers'),
+      ),
+    );
   });
 }

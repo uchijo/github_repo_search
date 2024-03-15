@@ -13,6 +13,6 @@ void main() {
 
     final result = await repo.search(query);
 
-    expect(result.isNotEmpty, true);
+    expect(result.items.isNotEmpty, true);
   });
 }
