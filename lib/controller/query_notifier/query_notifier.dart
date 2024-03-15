@@ -6,7 +6,7 @@ part 'query_notifier.g.dart';
 // run this to generate code
 // dart run build_runner build
 
-@riverpod
+@Riverpod(keepAlive: true)
 class QueryNotifier extends _$QueryNotifier {
   @override
   Query build() {

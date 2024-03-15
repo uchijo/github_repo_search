@@ -9,7 +9,7 @@ part 'search_result_notifier.g.dart';
 // run this to generate code
 // dart run build_runner build
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SearchResultNotifier extends _$SearchResultNotifier {
   @override
   Future<SearchResult> build() async {
