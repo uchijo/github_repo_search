@@ -2,5 +2,9 @@
 include: package:pedantic_mono/analysis_options.yaml
 
 analyzer:
+  # exclude files with .g.dart
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   plugins:
     - custom_lint
