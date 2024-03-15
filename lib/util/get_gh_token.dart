@@ -1,6 +1,9 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+// call after dotenv.load()
 String getGHToken() {
-  const rawValue = String.fromEnvironment('GITHUB_TOKEN');
-  if (rawValue.isEmpty) {
+  final rawValue = dotenv.env['GITHUB_TOKEN'];
+  if (rawValue == null || rawValue.isEmpty) {
     throw Exception('GITHUB_TOKEN is not set');
   }
   return rawValue;
