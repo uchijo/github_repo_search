@@ -11,8 +11,10 @@ _$RepositoryInfoImpl _$$RepositoryInfoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       fullName: json['full_name'] as String,
-      owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
-      language: json['language'] as String,
+      owner: json['owner'] == null
+          ? null
+          : Owner.fromJson(json['owner'] as Map<String, dynamic>),
+      language: json['language'] as String?,
       stargazersCount: json['stargazers_count'] as int,
       watchersCount: json['watchers_count'] as int,
       forks: json['forks'] as int,

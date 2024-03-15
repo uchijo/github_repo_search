@@ -24,8 +24,8 @@ mixin _$RepositoryInfo {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
-  Owner get owner => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
+  Owner? get owner => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'watchers_count')
@@ -50,14 +50,14 @@ abstract class $RepositoryInfoCopyWith<$Res> {
       {int id,
       String name,
       @JsonKey(name: 'full_name') String fullName,
-      Owner owner,
-      String language,
+      Owner? owner,
+      String? language,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       int forks,
       @JsonKey(name: 'open_issues') int openIssues});
 
-  $OwnerCopyWith<$Res> get owner;
+  $OwnerCopyWith<$Res>? get owner;
 }
 
 /// @nodoc
@@ -76,8 +76,8 @@ class _$RepositoryInfoCopyWithImpl<$Res, $Val extends RepositoryInfo>
     Object? id = null,
     Object? name = null,
     Object? fullName = null,
-    Object? owner = null,
-    Object? language = null,
+    Object? owner = freezed,
+    Object? language = freezed,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forks = null,
@@ -96,14 +96,14 @@ class _$RepositoryInfoCopyWithImpl<$Res, $Val extends RepositoryInfo>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: null == owner
+      owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as Owner,
-      language: null == language
+              as Owner?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -125,8 +125,12 @@ class _$RepositoryInfoCopyWithImpl<$Res, $Val extends RepositoryInfo>
 
   @override
   @pragma('vm:prefer-inline')
-  $OwnerCopyWith<$Res> get owner {
-    return $OwnerCopyWith<$Res>(_value.owner, (value) {
+  $OwnerCopyWith<$Res>? get owner {
+    if (_value.owner == null) {
+      return null;
+    }
+
+    return $OwnerCopyWith<$Res>(_value.owner!, (value) {
       return _then(_value.copyWith(owner: value) as $Val);
     });
   }
@@ -144,15 +148,15 @@ abstract class _$$RepositoryInfoImplCopyWith<$Res>
       {int id,
       String name,
       @JsonKey(name: 'full_name') String fullName,
-      Owner owner,
-      String language,
+      Owner? owner,
+      String? language,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       int forks,
       @JsonKey(name: 'open_issues') int openIssues});
 
   @override
-  $OwnerCopyWith<$Res> get owner;
+  $OwnerCopyWith<$Res>? get owner;
 }
 
 /// @nodoc
@@ -169,8 +173,8 @@ class __$$RepositoryInfoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? fullName = null,
-    Object? owner = null,
-    Object? language = null,
+    Object? owner = freezed,
+    Object? language = freezed,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forks = null,
@@ -189,14 +193,14 @@ class __$$RepositoryInfoImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: null == owner
+      owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as Owner,
-      language: null == language
+              as Owner?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -224,8 +228,8 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
       {required this.id,
       required this.name,
       @JsonKey(name: 'full_name') required this.fullName,
-      required this.owner,
-      required this.language,
+      this.owner,
+      this.language,
       @JsonKey(name: 'stargazers_count') required this.stargazersCount,
       @JsonKey(name: 'watchers_count') required this.watchersCount,
       required this.forks,
@@ -242,9 +246,9 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
   @JsonKey(name: 'full_name')
   final String fullName;
   @override
-  final Owner owner;
+  final Owner? owner;
   @override
-  final String language;
+  final String? language;
   @override
   @JsonKey(name: 'stargazers_count')
   final int stargazersCount;
@@ -308,8 +312,8 @@ abstract class _RepositoryInfo implements RepositoryInfo {
           {required final int id,
           required final String name,
           @JsonKey(name: 'full_name') required final String fullName,
-          required final Owner owner,
-          required final String language,
+          final Owner? owner,
+          final String? language,
           @JsonKey(name: 'stargazers_count') required final int stargazersCount,
           @JsonKey(name: 'watchers_count') required final int watchersCount,
           required final int forks,
@@ -327,9 +331,9 @@ abstract class _RepositoryInfo implements RepositoryInfo {
   @JsonKey(name: 'full_name')
   String get fullName;
   @override
-  Owner get owner;
+  Owner? get owner;
   @override
-  String get language;
+  String? get language;
   @override
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount;
