@@ -19,7 +19,15 @@ class RepositoryTile extends StatelessWidget {
           ),
         );
       },
-      title: Text(repositoryInfo.fullName),
+      title: Text(
+        repositoryInfo.fullName,
+        style: const TextStyle(fontSize: 18),
+      ),
+      subtitle: Text(
+        repositoryInfo.description ?? '',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }
