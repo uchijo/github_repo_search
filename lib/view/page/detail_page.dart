@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_search/model/repository_info/repository_info.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.repositoryInfo});
@@ -16,7 +17,6 @@ class DetailPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // アイコンとリポジトリ名
             buildHeader(context, repositoryInfo),
@@ -24,7 +24,30 @@ class DetailPage extends StatelessWidget {
             const SizedBox(height: 24),
 
             // 統計情報
-            buildStats(context, repositoryInfo),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: buildStats(context, repositoryInfo),
+            ),
+
+            const SizedBox(height: 24),
+
+            // open in browser button
+            OutlinedButton(
+              onPressed: () {
+                launchUrlString(
+                  'https://github.com/${repositoryInfo.fullName}',
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Open in Browser'),
+                  SizedBox(width: 6),
+                  Icon(Icons.open_in_new, size: 16),
+                ],
+              ),
+            ),
           ],
         ),
       ),
