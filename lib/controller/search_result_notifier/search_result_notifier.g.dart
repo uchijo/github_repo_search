@@ -7,12 +7,12 @@ part of 'search_result_notifier.dart';
 // **************************************************************************
 
 String _$searchResultNotifierHash() =>
-    r'f683911940334bdf9896aa411ffdb0946b63e277';
+    r'd951b48713432d67ad750f0e66e25b0a3b87d9cc';
 
 /// See also [SearchResultNotifier].
 @ProviderFor(SearchResultNotifier)
-final searchResultNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    SearchResultNotifier, SearchResult>.internal(
+final searchResultNotifierProvider =
+    AsyncNotifierProvider<SearchResultNotifier, SearchResult>.internal(
   SearchResultNotifier.new,
   name: r'searchResultNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final searchResultNotifierProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$SearchResultNotifier = AutoDisposeAsyncNotifier<SearchResult>;
+typedef _$SearchResultNotifier = AsyncNotifier<SearchResult>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
