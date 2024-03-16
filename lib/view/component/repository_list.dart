@@ -117,7 +117,7 @@ class _TotalRepoCount extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          color: Theme.of(context).primaryColorLight.withOpacity(0.4),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
