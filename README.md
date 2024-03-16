@@ -50,10 +50,10 @@ $ fvm flutter run
 ### テスト
 
 ```shell-session
-$ flutter test
+$ fvm flutter test
 
 # 疎通テストは以下の通り。ネットワーク越しでも問題なく動くことを確認したいときのみ使用するため、基本的には使わない。
-$ flutter test manual_test
+$ fvm flutter test manual_test
 ```
 
 ## 構成
