@@ -14,50 +14,53 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Details'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            // アイコンとリポジトリ名
-            _buildHeader(context, repositoryInfo),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              // アイコンとリポジトリ名
+              _buildHeader(context, repositoryInfo),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // リポジトリの説明
-            if (repositoryInfo.description != null)
+              // リポジトリの説明
+              if (repositoryInfo.description != null)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child:
+                      _buildDescription(context, repositoryInfo.description!),
+                ),
+
+              const SizedBox(height: 24),
+
+              // 統計情報
               Align(
                 alignment: Alignment.centerLeft,
-                child: _buildDescription(context, repositoryInfo.description!),
+                child: _buildStats(context, repositoryInfo),
               ),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // 統計情報
-            Align(
-              alignment: Alignment.centerLeft,
-              child: _buildStats(context, repositoryInfo),
-            ),
-
-            const SizedBox(height: 24),
-
-            // open in browser button
-            OutlinedButton(
-              onPressed: () {
-                launchUrlString(
-                  'https://github.com/${repositoryInfo.fullName}',
-                  mode: LaunchMode.externalApplication,
-                );
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Open in Browser'),
-                  SizedBox(width: 6),
-                  Icon(Icons.open_in_new, size: 16),
-                ],
+              // open in browser button
+              OutlinedButton(
+                onPressed: () {
+                  launchUrlString(
+                    'https://github.com/${repositoryInfo.fullName}',
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Open in Browser'),
+                    SizedBox(width: 6),
+                    Icon(Icons.open_in_new, size: 16),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
