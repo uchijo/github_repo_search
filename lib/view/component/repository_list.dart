@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_repo_search/controller/search_result_notifier/search_result_notifier.dart';
@@ -17,10 +19,11 @@ class RepositoryList extends ConsumerWidget {
         if (searchResult.isLoading) const LinearProgressIndicator(),
         switch (searchResult) {
           AsyncData(:final value) => switch (value) {
-              NoSearchWord() => const Text('no search word'),
+              NoSearchWord() => const _NoSearchWordInfo(),
               Value(
                 :final items,
                 :final isPagenating,
+                :final totalCount,
               ) =>
                 items.isEmpty
                     ? const Text('no result')
@@ -31,6 +34,7 @@ class RepositoryList extends ConsumerWidget {
                         loadNextPage: ref
                             .read(searchResultNotifierProvider.notifier)
                             .loadNextPage,
+                        totalCount: totalCount,
                       ),
             },
           AsyncLoading() => const Text('loading...'),
@@ -51,18 +55,23 @@ class _ListCore extends StatelessWidget {
     required this.hasNextPage,
     required this.isPagenating,
     required this.loadNextPage,
+    required this.totalCount,
   });
 
   final List<RepositoryInfo> items;
   final bool hasNextPage;
   final bool isPagenating;
   final Future<void> Function() loadNextPage;
+  final int totalCount;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
         children: [
+          // 検索結果の総数
+          _TotalRepoCount(totalCount: totalCount),
+
           // リストアイテム
           for (final item in items)
             RepositoryTile(
@@ -77,6 +86,56 @@ class _ListCore extends StatelessWidget {
               child: const Text('load more'),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class _NoSearchWordInfo extends StatelessWidget {
+  const _NoSearchWordInfo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'No search word set.\nStart searching from the search bar below!',
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+    );
+  }
+}
+
+class _TotalRepoCount extends StatelessWidget {
+  const _TotalRepoCount({required this.totalCount});
+
+  final int totalCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.check),
+                const SizedBox(width: 8),
+                Text(
+                  'found $totalCount repositories.',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

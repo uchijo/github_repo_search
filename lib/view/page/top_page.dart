@@ -10,7 +10,7 @@ class TopPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top Page'),
+        title: const Text('GitHub Repo Search'),
       ),
       body: const Column(
         children: <Widget>[

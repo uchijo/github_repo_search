@@ -12,7 +12,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('details: ${repositoryInfo.fullName}'),
+        title: const Text('Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
