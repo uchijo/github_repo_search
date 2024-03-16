@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_search/model/repository_info/repository_info.dart';
+import 'package:github_repo_search/view/page/detail_page.dart';
 
 class RepositoryTile extends StatelessWidget {
   const RepositoryTile({super.key, required this.repositoryInfo});
@@ -10,7 +11,13 @@ class RepositoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        // fixme: 画面遷移
+        Navigator.of(context).push<DetailPage>(
+          MaterialPageRoute(
+            builder: (context) {
+              return DetailPage(repositoryInfo: repositoryInfo);
+            },
+          ),
+        );
       },
       title: Text(repositoryInfo.fullName),
     );
