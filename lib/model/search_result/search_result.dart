@@ -14,6 +14,7 @@ sealed class SearchResult with _$SearchResult {
     required List<RepositoryInfo> items,
     required int totalCount,
     required int currentPage,
+    @Default(false) bool isPagenating,
   }) = Value;
   const factory SearchResult.noSearchWord() = NoSearchWord;
 

@@ -47,6 +47,7 @@ class SearchResultNotifier extends _$SearchResultNotifier {
       return;
     }
     final currentValue = currentState.value as Value;
+    state = AsyncData(currentValue.copyWith(isPagenating: true));
 
     final repo = ref.read(githubSearchRepositoryProvider);
     final query = ref.read(queryNotifierProvider);

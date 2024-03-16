@@ -18,24 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)
+    required TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)
         value,
     required TResult Function() noSearchWord,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult? Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult? Function()? noSearchWord,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult Function()? noSearchWord,
     required TResult orElse(),
@@ -86,7 +86,11 @@ abstract class _$$ValueImplCopyWith<$Res> {
           _$ValueImpl value, $Res Function(_$ValueImpl) then) =
       __$$ValueImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<RepositoryInfo> items, int totalCount, int currentPage});
+  $Res call(
+      {List<RepositoryInfo> items,
+      int totalCount,
+      int currentPage,
+      bool isPagenating});
 }
 
 /// @nodoc
@@ -103,6 +107,7 @@ class __$$ValueImplCopyWithImpl<$Res>
     Object? items = null,
     Object? totalCount = null,
     Object? currentPage = null,
+    Object? isPagenating = null,
   }) {
     return _then(_$ValueImpl(
       items: null == items
@@ -117,6 +122,10 @@ class __$$ValueImplCopyWithImpl<$Res>
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
+      isPagenating: null == isPagenating
+          ? _value.isPagenating
+          : isPagenating // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -127,7 +136,8 @@ class _$ValueImpl extends Value {
   const _$ValueImpl(
       {required final List<RepositoryInfo> items,
       required this.totalCount,
-      required this.currentPage})
+      required this.currentPage,
+      this.isPagenating = false})
       : _items = items,
         super._();
 
@@ -143,10 +153,13 @@ class _$ValueImpl extends Value {
   final int totalCount;
   @override
   final int currentPage;
+  @override
+  @JsonKey()
+  final bool isPagenating;
 
   @override
   String toString() {
-    return 'SearchResult.value(items: $items, totalCount: $totalCount, currentPage: $currentPage)';
+    return 'SearchResult.value(items: $items, totalCount: $totalCount, currentPage: $currentPage, isPagenating: $isPagenating)';
   }
 
   @override
@@ -158,12 +171,18 @@ class _$ValueImpl extends Value {
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount) &&
             (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage));
+                other.currentPage == currentPage) &&
+            (identical(other.isPagenating, isPagenating) ||
+                other.isPagenating == isPagenating));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_items), totalCount, currentPage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      totalCount,
+      currentPage,
+      isPagenating);
 
   @JsonKey(ignore: true)
   @override
@@ -174,36 +193,36 @@ class _$ValueImpl extends Value {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)
+    required TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)
         value,
     required TResult Function() noSearchWord,
   }) {
-    return value(items, totalCount, currentPage);
+    return value(items, totalCount, currentPage, isPagenating);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult? Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult? Function()? noSearchWord,
   }) {
-    return value?.call(items, totalCount, currentPage);
+    return value?.call(items, totalCount, currentPage, isPagenating);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult Function()? noSearchWord,
     required TResult orElse(),
   }) {
     if (value != null) {
-      return value(items, totalCount, currentPage);
+      return value(items, totalCount, currentPage, isPagenating);
     }
     return orElse();
   }
@@ -244,12 +263,14 @@ abstract class Value extends SearchResult {
   const factory Value(
       {required final List<RepositoryInfo> items,
       required final int totalCount,
-      required final int currentPage}) = _$ValueImpl;
+      required final int currentPage,
+      final bool isPagenating}) = _$ValueImpl;
   const Value._() : super._();
 
   List<RepositoryInfo> get items;
   int get totalCount;
   int get currentPage;
+  bool get isPagenating;
   @JsonKey(ignore: true)
   _$$ValueImplCopyWith<_$ValueImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -293,8 +314,8 @@ class _$NoSearchWordImpl extends NoSearchWord {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)
+    required TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)
         value,
     required TResult Function() noSearchWord,
   }) {
@@ -304,8 +325,8 @@ class _$NoSearchWordImpl extends NoSearchWord {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult? Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult? Function()? noSearchWord,
   }) {
@@ -315,8 +336,8 @@ class _$NoSearchWordImpl extends NoSearchWord {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<RepositoryInfo> items, int totalCount, int currentPage)?
+    TResult Function(List<RepositoryInfo> items, int totalCount,
+            int currentPage, bool isPagenating)?
         value,
     TResult Function()? noSearchWord,
     required TResult orElse(),
