@@ -81,9 +81,12 @@ class _ListCore extends StatelessWidget {
           // 読み込みボタン類
           if (isPagenating) const LinearProgressIndicator(),
           if (hasNextPage && !isPagenating)
-            ElevatedButton(
-              onPressed: loadNextPage,
-              child: const Text('load more'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
+              child: OutlinedButton(
+                onPressed: loadNextPage,
+                child: const Text('load more'),
+              ),
             ),
         ],
       ),
