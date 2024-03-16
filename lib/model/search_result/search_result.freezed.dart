@@ -14,19 +14,51 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
-  return _SearchResult.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SearchResult {
-  List<RepositoryInfo> get items => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_count')
-  int get totalCount => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SearchResultCopyWith<SearchResult> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)
+        value,
+    required TResult Function() noSearchWord,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult? Function()? noSearchWord,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult Function()? noSearchWord,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Value value) value,
+    required TResult Function(NoSearchWord value) noSearchWord,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Value value)? value,
+    TResult? Function(NoSearchWord value)? noSearchWord,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Value value)? value,
+    TResult Function(NoSearchWord value)? noSearchWord,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -35,10 +67,6 @@ abstract class $SearchResultCopyWith<$Res> {
   factory $SearchResultCopyWith(
           SearchResult value, $Res Function(SearchResult) then) =
       _$SearchResultCopyWithImpl<$Res, SearchResult>;
-  @useResult
-  $Res call(
-      {List<RepositoryInfo> items,
-      @JsonKey(name: 'total_count') int totalCount});
 }
 
 /// @nodoc
@@ -50,45 +78,23 @@ class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? items = null,
-    Object? totalCount = null,
-  }) {
-    return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<RepositoryInfo>,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SearchResultImplCopyWith<$Res>
-    implements $SearchResultCopyWith<$Res> {
-  factory _$$SearchResultImplCopyWith(
-          _$SearchResultImpl value, $Res Function(_$SearchResultImpl) then) =
-      __$$SearchResultImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$ValueImplCopyWith<$Res> {
+  factory _$$ValueImplCopyWith(
+          _$ValueImpl value, $Res Function(_$ValueImpl) then) =
+      __$$ValueImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<RepositoryInfo> items,
-      @JsonKey(name: 'total_count') int totalCount});
+  $Res call({List<RepositoryInfo> items, int totalCount, int currentPage});
 }
 
 /// @nodoc
-class __$$SearchResultImplCopyWithImpl<$Res>
-    extends _$SearchResultCopyWithImpl<$Res, _$SearchResultImpl>
-    implements _$$SearchResultImplCopyWith<$Res> {
-  __$$SearchResultImplCopyWithImpl(
-      _$SearchResultImpl _value, $Res Function(_$SearchResultImpl) _then)
+class __$$ValueImplCopyWithImpl<$Res>
+    extends _$SearchResultCopyWithImpl<$Res, _$ValueImpl>
+    implements _$$ValueImplCopyWith<$Res> {
+  __$$ValueImplCopyWithImpl(
+      _$ValueImpl _value, $Res Function(_$ValueImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,8 +102,9 @@ class __$$SearchResultImplCopyWithImpl<$Res>
   $Res call({
     Object? items = null,
     Object? totalCount = null,
+    Object? currentPage = null,
   }) {
-    return _then(_$SearchResultImpl(
+    return _then(_$ValueImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -106,20 +113,22 @@ class __$$SearchResultImplCopyWithImpl<$Res>
           ? _value.totalCount
           : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$SearchResultImpl implements _SearchResult {
-  _$SearchResultImpl(
-      {required final List<RepositoryInfo> items,
-      @JsonKey(name: 'total_count') required this.totalCount})
-      : _items = items;
 
-  factory _$SearchResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SearchResultImplFromJson(json);
+class _$ValueImpl implements Value {
+  const _$ValueImpl(
+      {required final List<RepositoryInfo> items,
+      required this.totalCount,
+      required this.currentPage})
+      : _items = items;
 
   final List<RepositoryInfo> _items;
   @override
@@ -130,59 +139,224 @@ class _$SearchResultImpl implements _SearchResult {
   }
 
   @override
-  @JsonKey(name: 'total_count')
   final int totalCount;
+  @override
+  final int currentPage;
 
   @override
   String toString() {
-    return 'SearchResult(items: $items, totalCount: $totalCount)';
+    return 'SearchResult.value(items: $items, totalCount: $totalCount, currentPage: $currentPage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchResultImpl &&
+            other is _$ValueImpl &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.totalCount, totalCount) ||
-                other.totalCount == totalCount));
+                other.totalCount == totalCount) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_items), totalCount);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_items), totalCount, currentPage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchResultImplCopyWith<_$SearchResultImpl> get copyWith =>
-      __$$SearchResultImplCopyWithImpl<_$SearchResultImpl>(this, _$identity);
+  _$$ValueImplCopyWith<_$ValueImpl> get copyWith =>
+      __$$ValueImplCopyWithImpl<_$ValueImpl>(this, _$identity);
 
   @override
-  Map<String, dynamic> toJson() {
-    return _$$SearchResultImplToJson(
-      this,
-    );
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)
+        value,
+    required TResult Function() noSearchWord,
+  }) {
+    return value(items, totalCount, currentPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult? Function()? noSearchWord,
+  }) {
+    return value?.call(items, totalCount, currentPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult Function()? noSearchWord,
+    required TResult orElse(),
+  }) {
+    if (value != null) {
+      return value(items, totalCount, currentPage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Value value) value,
+    required TResult Function(NoSearchWord value) noSearchWord,
+  }) {
+    return value(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Value value)? value,
+    TResult? Function(NoSearchWord value)? noSearchWord,
+  }) {
+    return value?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Value value)? value,
+    TResult Function(NoSearchWord value)? noSearchWord,
+    required TResult orElse(),
+  }) {
+    if (value != null) {
+      return value(this);
+    }
+    return orElse();
   }
 }
 
-abstract class _SearchResult implements SearchResult {
-  factory _SearchResult(
-          {required final List<RepositoryInfo> items,
-          @JsonKey(name: 'total_count') required final int totalCount}) =
-      _$SearchResultImpl;
+abstract class Value implements SearchResult {
+  const factory Value(
+      {required final List<RepositoryInfo> items,
+      required final int totalCount,
+      required final int currentPage}) = _$ValueImpl;
 
-  factory _SearchResult.fromJson(Map<String, dynamic> json) =
-      _$SearchResultImpl.fromJson;
-
-  @override
   List<RepositoryInfo> get items;
-  @override
-  @JsonKey(name: 'total_count')
   int get totalCount;
-  @override
+  int get currentPage;
   @JsonKey(ignore: true)
-  _$$SearchResultImplCopyWith<_$SearchResultImpl> get copyWith =>
+  _$$ValueImplCopyWith<_$ValueImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NoSearchWordImplCopyWith<$Res> {
+  factory _$$NoSearchWordImplCopyWith(
+          _$NoSearchWordImpl value, $Res Function(_$NoSearchWordImpl) then) =
+      __$$NoSearchWordImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NoSearchWordImplCopyWithImpl<$Res>
+    extends _$SearchResultCopyWithImpl<$Res, _$NoSearchWordImpl>
+    implements _$$NoSearchWordImplCopyWith<$Res> {
+  __$$NoSearchWordImplCopyWithImpl(
+      _$NoSearchWordImpl _value, $Res Function(_$NoSearchWordImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NoSearchWordImpl implements NoSearchWord {
+  const _$NoSearchWordImpl();
+
+  @override
+  String toString() {
+    return 'SearchResult.noSearchWord()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NoSearchWordImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)
+        value,
+    required TResult Function() noSearchWord,
+  }) {
+    return noSearchWord();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult? Function()? noSearchWord,
+  }) {
+    return noSearchWord?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            List<RepositoryInfo> items, int totalCount, int currentPage)?
+        value,
+    TResult Function()? noSearchWord,
+    required TResult orElse(),
+  }) {
+    if (noSearchWord != null) {
+      return noSearchWord();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Value value) value,
+    required TResult Function(NoSearchWord value) noSearchWord,
+  }) {
+    return noSearchWord(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Value value)? value,
+    TResult? Function(NoSearchWord value)? noSearchWord,
+  }) {
+    return noSearchWord?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Value value)? value,
+    TResult Function(NoSearchWord value)? noSearchWord,
+    required TResult orElse(),
+  }) {
+    if (noSearchWord != null) {
+      return noSearchWord(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoSearchWord implements SearchResult {
+  const factory NoSearchWord() = _$NoSearchWordImpl;
 }

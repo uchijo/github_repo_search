@@ -1,5 +1,4 @@
 import 'package:github_repo_search/controller/query_notifier/query_notifier.dart';
-import 'package:github_repo_search/model/repository_info/repository_info.dart';
 import 'package:github_repo_search/model/search_result/search_result.dart';
 import 'package:github_repo_search/repository_impl/github_search_repository_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,13 +20,14 @@ class SearchResultNotifier extends _$SearchResultNotifier {
 
     // 検索キーワードがない場合はAPIを叩かない
     if (query.keyword.isEmpty) {
-      return SearchResult(items: <RepositoryInfo>[], totalCount: 0);
+      return const SearchResult.noSearchWord();
     }
 
     final res = await repo.search(query);
-    final searchResult = SearchResult(
+    final searchResult = SearchResult.value(
       items: res.items,
       totalCount: res.totalCount,
+      currentPage: 1,
     );
 
     return searchResult;

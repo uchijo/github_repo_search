@@ -30,7 +30,8 @@ void main() {
     // 初期状態ではloadingだが、読み込みが終わるとemptyになる
     expect(find.text('loading...'), findsOneWidget);
     await tester.pump(const Duration(seconds: 1));
-    expect(find.text('empty'), findsOneWidget);
+    await tester.pump();
+    expect(find.text('no search word'), findsOneWidget);
 
     // 検索するとリストが表示される
     container.read(queryNotifierProvider.notifier).setSearchWord('flutter');
