@@ -46,7 +46,7 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
     );
 
     if (res.statusCode != 200) {
-      throw Exception('Failed to load data');
+      throw Exception('Failed to load data. Please try later.');
     }
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
