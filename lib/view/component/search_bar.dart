@@ -8,23 +8,41 @@ class SearchStuff extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        Expanded(
-          child: TextField(
-            onChanged: (value) {
-              debugPrint('search word: $value');
-              ref.read(queryNotifierProvider.notifier).setSearchWord(value);
-            },
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20, top: 12),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.all(8),
+                labelText: 'search',
+              ),
+              onChanged: (value) {
+                debugPrint('search word: $value');
+                ref.read(queryNotifierProvider.notifier).setSearchWord(value);
+              },
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: () {
-            ref.read(searchResultNotifierProvider.notifier).search();
-          },
-          icon: const Icon(Icons.search),
-        ),
-      ],
+          const SizedBox(width: 8),
+          IconButton(
+            style: ButtonStyle(
+              // add solid, rounded border
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            onPressed: () {
+              ref.read(searchResultNotifierProvider.notifier).search();
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
     );
   }
 }

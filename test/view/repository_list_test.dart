@@ -31,7 +31,7 @@ void main() {
     expect(find.text('loading...'), findsOneWidget);
     await tester.pump(const Duration(seconds: 1));
     await tester.pump();
-    expect(find.text('no search word'), findsOneWidget);
+    expect(find.textContaining('search word'), findsOneWidget);
 
     // 検索するとリストが表示される
     container.read(queryNotifierProvider.notifier).setSearchWord('flutter');

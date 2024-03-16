@@ -33,6 +33,7 @@ mixin _$RepositoryInfo {
   int get forks => throw _privateConstructorUsedError;
   @JsonKey(name: 'open_issues')
   int get openIssues => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +56,8 @@ abstract class $RepositoryInfoCopyWith<$Res> {
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       int forks,
-      @JsonKey(name: 'open_issues') int openIssues});
+      @JsonKey(name: 'open_issues') int openIssues,
+      String? description});
 
   $OwnerCopyWith<$Res>? get owner;
 }
@@ -82,6 +84,7 @@ class _$RepositoryInfoCopyWithImpl<$Res, $Val extends RepositoryInfo>
     Object? watchersCount = null,
     Object? forks = null,
     Object? openIssues = null,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -120,6 +123,10 @@ class _$RepositoryInfoCopyWithImpl<$Res, $Val extends RepositoryInfo>
           ? _value.openIssues
           : openIssues // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -153,7 +160,8 @@ abstract class _$$RepositoryInfoImplCopyWith<$Res>
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       int forks,
-      @JsonKey(name: 'open_issues') int openIssues});
+      @JsonKey(name: 'open_issues') int openIssues,
+      String? description});
 
   @override
   $OwnerCopyWith<$Res>? get owner;
@@ -179,6 +187,7 @@ class __$$RepositoryInfoImplCopyWithImpl<$Res>
     Object? watchersCount = null,
     Object? forks = null,
     Object? openIssues = null,
+    Object? description = freezed,
   }) {
     return _then(_$RepositoryInfoImpl(
       id: null == id
@@ -217,6 +226,10 @@ class __$$RepositoryInfoImplCopyWithImpl<$Res>
           ? _value.openIssues
           : openIssues // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -233,7 +246,8 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
       @JsonKey(name: 'stargazers_count') required this.stargazersCount,
       @JsonKey(name: 'watchers_count') required this.watchersCount,
       required this.forks,
-      @JsonKey(name: 'open_issues') required this.openIssues});
+      @JsonKey(name: 'open_issues') required this.openIssues,
+      this.description});
 
   factory _$RepositoryInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$RepositoryInfoImplFromJson(json);
@@ -260,10 +274,12 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
   @override
   @JsonKey(name: 'open_issues')
   final int openIssues;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'RepositoryInfo(id: $id, name: $name, fullName: $fullName, owner: $owner, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forks: $forks, openIssues: $openIssues)';
+    return 'RepositoryInfo(id: $id, name: $name, fullName: $fullName, owner: $owner, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forks: $forks, openIssues: $openIssues, description: $description)';
   }
 
   @override
@@ -284,13 +300,15 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
                 other.watchersCount == watchersCount) &&
             (identical(other.forks, forks) || other.forks == forks) &&
             (identical(other.openIssues, openIssues) ||
-                other.openIssues == openIssues));
+                other.openIssues == openIssues) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, fullName, owner,
-      language, stargazersCount, watchersCount, forks, openIssues);
+      language, stargazersCount, watchersCount, forks, openIssues, description);
 
   @JsonKey(ignore: true)
   @override
@@ -309,16 +327,16 @@ class _$RepositoryInfoImpl implements _RepositoryInfo {
 
 abstract class _RepositoryInfo implements RepositoryInfo {
   factory _RepositoryInfo(
-          {required final int id,
-          required final String name,
-          @JsonKey(name: 'full_name') required final String fullName,
-          final Owner? owner,
-          final String? language,
-          @JsonKey(name: 'stargazers_count') required final int stargazersCount,
-          @JsonKey(name: 'watchers_count') required final int watchersCount,
-          required final int forks,
-          @JsonKey(name: 'open_issues') required final int openIssues}) =
-      _$RepositoryInfoImpl;
+      {required final int id,
+      required final String name,
+      @JsonKey(name: 'full_name') required final String fullName,
+      final Owner? owner,
+      final String? language,
+      @JsonKey(name: 'stargazers_count') required final int stargazersCount,
+      @JsonKey(name: 'watchers_count') required final int watchersCount,
+      required final int forks,
+      @JsonKey(name: 'open_issues') required final int openIssues,
+      final String? description}) = _$RepositoryInfoImpl;
 
   factory _RepositoryInfo.fromJson(Map<String, dynamic> json) =
       _$RepositoryInfoImpl.fromJson;
@@ -345,6 +363,8 @@ abstract class _RepositoryInfo implements RepositoryInfo {
   @override
   @JsonKey(name: 'open_issues')
   int get openIssues;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$RepositoryInfoImplCopyWith<_$RepositoryInfoImpl> get copyWith =>

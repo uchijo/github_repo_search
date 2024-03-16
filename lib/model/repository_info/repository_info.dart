@@ -21,6 +21,7 @@ class RepositoryInfo with _$RepositoryInfo {
     @JsonKey(name: 'watchers_count') required int watchersCount,
     required int forks,
     @JsonKey(name: 'open_issues') required int openIssues,
+    String? description,
   }) = _RepositoryInfo;
 
   factory RepositoryInfo.fromJson(Map<String, dynamic> json) =>
