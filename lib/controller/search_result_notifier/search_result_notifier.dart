@@ -32,4 +32,8 @@ class SearchResultNotifier extends _$SearchResultNotifier {
 
     return searchResult;
   }
+
+  void search() {
+    ref.invalidateSelf();
+  }
 }

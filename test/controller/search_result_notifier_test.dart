@@ -30,7 +30,7 @@ void main() {
     expect(searchResult, isA<NoSearchWord>());
 
     // invalidateして初めて検索結果が更新される
-    container.invalidate(searchResultNotifierProvider);
+    container.read(searchResultNotifierProvider.notifier).search();
     searchResult = await container.read(searchResultNotifierProvider.future);
     expect(searchResult, isA<Value>());
     switch (searchResult) {

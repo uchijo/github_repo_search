@@ -20,7 +20,7 @@ class SearchStuff extends ConsumerWidget {
         ),
         IconButton(
           onPressed: () {
-            ref.invalidate(searchResultNotifierProvider);
+            ref.read(searchResultNotifierProvider.notifier).search();
           },
           icon: const Icon(Icons.search),
         ),

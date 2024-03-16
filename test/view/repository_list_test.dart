@@ -35,7 +35,7 @@ void main() {
 
     // 検索するとリストが表示される
     container.read(queryNotifierProvider.notifier).setSearchWord('flutter');
-    container.invalidate(searchResultNotifierProvider);
+    container.read(searchResultNotifierProvider.notifier).search();
     await tester.pump(const Duration(seconds: 3));
     await tester.pump();
     expect(find.byType(ListView), findsOneWidget);
