@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:github_repo_search/controller/repository/github_search_repository.dart';
 import 'package:github_repo_search/model/query/query.dart';
-import 'package:github_repo_search/model/search_result/search_result.dart';
 import 'package:github_repo_search/util/get_gh_token.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -26,7 +25,7 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
   late final String _token;
 
   @override
-  Future<SearchResult> search(Query query, {int page = 1}) async {
+  Future<SearchResponse> search(Query query, {int page = 1}) async {
     if (query.keyword.isEmpty) {
       throw Exception('keyword is empty');
     }
@@ -51,7 +50,7 @@ class GithubSearchRepositoryImpl implements GithubSearchRepository {
     }
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
-    final result = SearchResult.fromJson(json);
+    final result = SearchResponse.fromJson(json);
 
     return result;
   }

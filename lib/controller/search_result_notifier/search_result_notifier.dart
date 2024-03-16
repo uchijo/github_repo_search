@@ -24,7 +24,11 @@ class SearchResultNotifier extends _$SearchResultNotifier {
       return SearchResult(items: <RepositoryInfo>[], totalCount: 0);
     }
 
-    final searchResult = await repo.search(query);
+    final res = await repo.search(query);
+    final searchResult = SearchResult(
+      items: res.items,
+      totalCount: res.totalCount,
+    );
 
     return searchResult;
   }
