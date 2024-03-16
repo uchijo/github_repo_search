@@ -90,3 +90,11 @@ CIが設定しており、`dart format .`によるフォーマットの確認、
 mainブランチへのpushが発生したタイミング、mainブランチへのプルリクエストに対して行われます。
 
 CDに関してはブランチ運用・リリースの通りですが、タグを切るとAndroid版のapkが作成され、GitHub ActionsのArtifactsに保存されます。
+
+## 仕様
+
+https://github.com/yumemi-inc/flutter-engineer-codecheck?tab=readme-ov-file
+
+## その他
+
+Macを持っていないため、Androidに関してのみデバッグ等を行いました。
