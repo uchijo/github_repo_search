@@ -123,12 +123,13 @@ class __$$ValueImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ValueImpl implements Value {
+class _$ValueImpl extends Value {
   const _$ValueImpl(
       {required final List<RepositoryInfo> items,
       required this.totalCount,
       required this.currentPage})
-      : _items = items;
+      : _items = items,
+        super._();
 
   final List<RepositoryInfo> _items;
   @override
@@ -239,11 +240,12 @@ class _$ValueImpl implements Value {
   }
 }
 
-abstract class Value implements SearchResult {
+abstract class Value extends SearchResult {
   const factory Value(
       {required final List<RepositoryInfo> items,
       required final int totalCount,
       required final int currentPage}) = _$ValueImpl;
+  const Value._() : super._();
 
   List<RepositoryInfo> get items;
   int get totalCount;
@@ -271,8 +273,8 @@ class __$$NoSearchWordImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NoSearchWordImpl implements NoSearchWord {
-  const _$NoSearchWordImpl();
+class _$NoSearchWordImpl extends NoSearchWord {
+  const _$NoSearchWordImpl() : super._();
 
   @override
   String toString() {
@@ -357,6 +359,7 @@ class _$NoSearchWordImpl implements NoSearchWord {
   }
 }
 
-abstract class NoSearchWord implements SearchResult {
+abstract class NoSearchWord extends SearchResult {
   const factory NoSearchWord() = _$NoSearchWordImpl;
+  const NoSearchWord._() : super._();
 }

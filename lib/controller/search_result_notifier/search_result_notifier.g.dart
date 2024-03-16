@@ -7,7 +7,7 @@ part of 'search_result_notifier.dart';
 // **************************************************************************
 
 String _$searchResultNotifierHash() =>
-    r'0d821eb4b64cf319d6619b8ca4f363be881e9eb4';
+    r'089f34642b236bcbbd515cf782948901bf5c26a7';
 
 /// See also [SearchResultNotifier].
 @ProviderFor(SearchResultNotifier)

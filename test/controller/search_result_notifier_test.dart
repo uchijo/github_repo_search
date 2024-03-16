@@ -41,4 +41,47 @@ void main() {
         fail('searchResult is not Value');
     }
   });
+
+  test('test SearchResultNotifier pagenation', () async {
+    final container = createContainer(
+      overrides: [
+        githubSearchRepositoryProvider.overrideWith(
+          (ref) => GithubSearchRepositoryMock(),
+        ),
+      ],
+    );
+
+    // 検索ワードを設定して検索
+    container.read(queryNotifierProvider.notifier).setSearchWord('dummy');
+    container.read(searchResultNotifierProvider.notifier).search();
+    final searchResult1 =
+        await container.read(searchResultNotifierProvider.future);
+
+    // 1ページ目のみ保持
+    expect(searchResult1, isA<Value>());
+    switch (searchResult1) {
+      case Value(:final items, :final totalCount, :final currentPage):
+        expect(items.length, isNot(totalCount));
+        expect(currentPage, 1);
+      default:
+        fail('searchResult is not Value');
+    }
+
+    // 2ページ目を取得
+    expect(searchResult1.hasNextPage, true);
+    await container.read(searchResultNotifierProvider.notifier).loadNextPage();
+    final searchResult2 = await container.read(
+      searchResultNotifierProvider.future,
+    );
+    switch (searchResult2) {
+      case Value(:final items, :final totalCount, :final currentPage):
+        expect(items.length, totalCount);
+        expect(currentPage, 2);
+      default:
+        fail('searchResult is not Value');
+    }
+
+    // 3ページ目は存在しない
+    expect(searchResult2.hasNextPage, false);
+  });
 }

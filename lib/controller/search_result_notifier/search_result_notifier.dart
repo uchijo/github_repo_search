@@ -36,4 +36,27 @@ class SearchResultNotifier extends _$SearchResultNotifier {
   void search() {
     ref.invalidateSelf();
   }
+
+  Future<void> loadNextPage() async {
+    // SearchResult.valueの場合のみページネーション処理へ進む。それ以外は弾く。
+    if (state is! AsyncData<SearchResult>) {
+      return;
+    }
+    final currentState = state as AsyncData<SearchResult>;
+    if (currentState.value is! Value) {
+      return;
+    }
+    final currentValue = currentState.value as Value;
+
+    final repo = ref.read(githubSearchRepositoryProvider);
+    final query = ref.read(queryNotifierProvider);
+    final res = await repo.search(query, page: currentValue.currentPage + 1);
+
+    final searchResult = SearchResult.value(
+      items: [...currentValue.items, ...res.items],
+      totalCount: res.totalCount,
+      currentPage: currentValue.currentPage + 1,
+    );
+    state = AsyncData(searchResult);
+  }
 }

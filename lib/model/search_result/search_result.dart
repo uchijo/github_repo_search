@@ -16,4 +16,11 @@ sealed class SearchResult with _$SearchResult {
     required int currentPage,
   }) = Value;
   const factory SearchResult.noSearchWord() = NoSearchWord;
+
+  const SearchResult._();
+
+  bool get hasNextPage => switch (this) {
+        Value(:final items, :final totalCount) => items.length < totalCount,
+        _ => false,
+      };
 }
