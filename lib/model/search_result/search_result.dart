@@ -4,18 +4,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:github_repo_search/model/repository_info/repository_info.dart';
 
 part 'search_result.freezed.dart';
-part 'search_result.g.dart';
 
 // run this to generate code
 // dart run build_runner build
 
 @freezed
-class SearchResult with _$SearchResult {
-  factory SearchResult({
+sealed class SearchResult with _$SearchResult {
+  const factory SearchResult.value({
     required List<RepositoryInfo> items,
-    @JsonKey(name: 'total_count') required int totalCount,
-  }) = _SearchResult;
+    required int totalCount,
+    required int currentPage,
+    @Default(false) bool isPagenating,
+  }) = Value;
+  const factory SearchResult.noSearchWord() = NoSearchWord;
 
-  factory SearchResult.fromJson(Map<String, dynamic> json) =>
-      _$SearchResultFromJson(json);
+  const SearchResult._();
+
+  bool get hasNextPage => switch (this) {
+        Value(:final items, :final totalCount) => items.length < totalCount,
+        _ => false,
+      };
 }
