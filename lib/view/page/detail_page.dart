@@ -19,14 +19,23 @@ class DetailPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             // アイコンとリポジトリ名
-            buildHeader(context, repositoryInfo),
+            _buildHeader(context, repositoryInfo),
+
+            const SizedBox(height: 24),
+
+            // リポジトリの説明
+            if (repositoryInfo.description != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: _buildDescription(context, repositoryInfo.description!),
+              ),
 
             const SizedBox(height: 24),
 
             // 統計情報
             Align(
               alignment: Alignment.centerLeft,
-              child: buildStats(context, repositoryInfo),
+              child: _buildStats(context, repositoryInfo),
             ),
 
             const SizedBox(height: 24),
@@ -55,7 +64,7 @@ class DetailPage extends StatelessWidget {
   }
 }
 
-Widget buildHeader(BuildContext context, RepositoryInfo repositoryInfo) {
+Widget _buildHeader(BuildContext context, RepositoryInfo repositoryInfo) {
   return Row(
     children: [
       // アイコン
@@ -98,7 +107,7 @@ Widget buildHeader(BuildContext context, RepositoryInfo repositoryInfo) {
   );
 }
 
-Widget buildStats(BuildContext context, RepositoryInfo repositoryInfo) {
+Widget _buildStats(BuildContext context, RepositoryInfo repositoryInfo) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,6 +146,26 @@ Widget buildStats(BuildContext context, RepositoryInfo repositoryInfo) {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildDescription(BuildContext context, String description) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'description',
+        style: Theme.of(context).textTheme.headlineSmall,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 18, right: 18, top: 8),
+        child: Text(
+          description,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     ],
