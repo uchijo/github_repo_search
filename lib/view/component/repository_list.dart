@@ -11,27 +11,35 @@ class RepositoryList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final searchResult = ref.watch(searchResultNotifierProvider);
 
-    return switch (searchResult) {
-      AsyncData(:final value) => switch (value) {
-          NoSearchWord() => const Text('no search word'),
-          Value(
-            items: final data,
-          ) =>
-            data.isEmpty
-                ? const Text('no result')
-                : ListView(
-                    children: [
-                      for (final item in data)
-                        RepositoryTile(
-                          repositoryInfo: item,
+    return Column(
+      children: [
+        if (searchResult.isLoading) const LinearProgressIndicator(),
+        switch (searchResult) {
+          AsyncData(:final value) => switch (value) {
+              NoSearchWord() => const Text('no search word'),
+              Value(
+                items: final data,
+              ) =>
+                data.isEmpty
+                    ? const Text('no result')
+                    : Expanded(
+                        child: ListView(
+                          children: [
+                            for (final item in data)
+                              RepositoryTile(
+                                repositoryInfo: item,
+                              ),
+                          ],
                         ),
-                    ],
-                  ),
+                      ),
+            },
+          AsyncLoading() => const Text('loading...'),
+          AsyncError(error: final err, stackTrace: final _) =>
+            Text(err.toString()),
+          // ここには辿り着かないはず
+          _ => const Text('empty'),
         },
-      AsyncLoading() => const Text('loading...'),
-      AsyncError(error: final err, stackTrace: final _) => Text(err.toString()),
-      // ここには辿り着かないはず
-      _ => const Text('empty'),
-    };
+      ],
+    );
   }
 }
