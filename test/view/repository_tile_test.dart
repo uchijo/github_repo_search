@@ -44,7 +44,8 @@ void main() async {
         );
 
         await tester.tap(find.byType(RepositoryTile));
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 3));
+        await tester.pump();
 
         expect(find.byType(DetailPage), findsOneWidget);
       },
